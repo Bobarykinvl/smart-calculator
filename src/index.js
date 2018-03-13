@@ -1,8 +1,7 @@
 class SmartCalculator {
   constructor(initialValue) {
-	this.exampleZn = ['**','/','*','-','+'];
 	this.initialValue =  initialValue;
-	var answer = 0;
+	this.answerCount = 5;
     this.rezArr = [];
 	this.rezArr[0] = initialValue;
   }
@@ -39,83 +38,73 @@ class SmartCalculator {
 	
 	
   toString(){
-	  
-	  
-	var examLength = this.exampleZn.length;
-    for(var i=0; i < examLength; i++){
+    for(var i=0; i < this.answerCount; i++){
       	for(var k=0; k < this.rezArr.length; k++){
 //			console.log(this.exampleZn[i]);
-			if(this.rezArr[k] == this.exampleZn[i]){
-				if(this.rezArr[k] == '**') {
-//				  console.log('пров');
-				  this.rezArr[k] = Math.pow(this.rezArr[k-1],this.rezArr[k+1]);
-				  this.rezArr.splice(k + 1, 1);
-				  this.rezArr.splice(k - 1, 1);
-				  k = 0;
-				}
+			if(this.rezArr[k] == '**') {
+//			console.log('пров');
+			this.rezArr[k] = Math.pow(this.rezArr[k-1],this.rezArr[k+1]);
+			this.rezArr.splice(k + 1, 1);
+			this.rezArr.splice(k - 1, 1);
+			k = 0;
 			}
+
 		}
 	}
 	  
 	  
-	  for(var i=0; i < examLength; i++){
+	  for(var i=0; i < this.answerCount; i++){
       	for(var k=0; k < this.rezArr.length; k++){
-			if(this.rezArr[k]== this.exampleZn[i]){
+
 				if(this.rezArr[k] == '*'){
-				  this.rezArr[k] = this.rezArr[k+1]*this.rezArr[k-1];
+				  this.rezArr[k] = (this.rezArr[k+1]) * (this.rezArr[k-1]);
 				  this.rezArr.splice(k + 1, 1);
 				  this.rezArr.splice(k - 1, 1);
 				  k = 0;
 				}
-			}
+
 		}
 	  }
 	  
 	  
-	  for(var i=0; i < examLength; i++){
+	  for(var i=0; i < this.answerCount; i++){
       	for(var k=0; k < this.rezArr.length; k++){
-			if(this.rezArr[k]== this.exampleZn[i]){
-				if(this.rezArr[k] == '/'){
-				  this.rezArr[k] = this.rezArr[k-1]/this.rezArr[k+1];
-				  this.rezArr.splice(k + 1, 1);
-				  this.rezArr.splice(k - 1, 1);
-				  k = 0;
-				}
+			if(this.rezArr[k] == '/'){
+			  this.rezArr[k] = (this.rezArr[k-1]) / (this.rezArr[k+1]);
+			  this.rezArr.splice(k + 1, 1);
+			  this.rezArr.splice(k - 1, 1);
+			  k = 0;
 			}
 		}
 	  }
 	  
 	  
-	  for(var i=0; i < examLength; i++){
+	  for(var i=0; i < this.answerCount; i++){
       	for(var k = 0; k<this.rezArr.length; k++){
-			if(this.rezArr[k]== this.exampleZn[i]){
-				if(this.rezArr[k] == '-'){
-				  this.rezArr[k] = this.rezArr[k-1]-this.rezArr[k+1];
-				  this.rezArr.splice(k + 1, 1);
-				  this.rezArr.splice(k - 1, 1);
-				  k = 0;
-				}
+			if(this.rezArr[k] == '-'){
+			  this.rezArr[k] = (this.rezArr[k-1]) - (this.rezArr[k+1]);
+			  this.rezArr.splice(k + 1, 1);
+			  this.rezArr.splice(k - 1, 1);
+			  k = 0;
 			}
 		}
 	  }
 	  
 	  
-	   for(var i=0; i < examLength; i++){
+	  for(var i=0; i < this.answerCount; i++){
       	for(var k = 0; k < this.rezArr.length; k++){
-			if(this.rezArr[k]== this.exampleZn[i]){
-				if(this.rezArr[k] == '+'){
-				  this.rezArr[k] = this.rezArr[k+1]+this.rezArr[k-1];
-				  this.rezArr.splice(k + 1, 1);
-				  this.rezArr.splice(k - 1, 1);
-				  k = 0;
-				}
-		}
-      }
+			if(this.rezArr[k] == '+'){
+				this.rezArr[k] = (this.rezArr[k+1]) + (this.rezArr[k-1]);
+				this.rezArr.splice(k + 1, 1);
+				this.rezArr.splice(k - 1, 1);
+				k = 0;
+			}
+      	}
     }
 	
     return this.rezArr[0];
   }
+ }
 
-}
 
 module.exports = SmartCalculator;
